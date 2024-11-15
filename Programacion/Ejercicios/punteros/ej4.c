@@ -15,4 +15,4 @@ int main(){
 return 0;
 }
 
-// cuando tu accedes a la memoria es porque le estas dando un valor en cambio el []explota.
+// cuando tu accedes a la memoria es porque le estas dando un valor en cambio el []explota .

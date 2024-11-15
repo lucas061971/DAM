@@ -15,11 +15,9 @@ void intercambiar2(int *n){
 	printf("Valor intercambiado:%d\n", *n2);
 	printf("Valor intercambiado en la función:%d\n", *n3);
 
-
+}
+	return 0;
 }
 
+// cuando tu accedes a la memoria es porque le estas dando un valor en cambio el [] explota.
 
-return 0;
-}
-
-// cuando tu accedes a la memoria es porque le estas dando un valor en cambio el []explota.
