@@ -15,9 +15,9 @@ typedef struct	{
 	//Estuadiante estudiante_nuevo;
 	//return estudiante_nuevo;
 	void inicializar(Estudiante * estudiante_a_rellenar, char * nombre, int edad, float nota){
-		estudiante_a_rellenar.edad = edad;
-		estudiante_a_rellenar.nota = nota;
-		strcpy(estudainte_a_rellenar.nombre,nombre);
+			estudiante_a_rellenar.edad = edad;
+			estudiante_a_rellenar.nota = nota;
+		strcpy(estudiante_a_rellenar->nombre,nombre);
 	}
 int main(){
 	Estudiante listado[MAX_ESTUDIANTES];
