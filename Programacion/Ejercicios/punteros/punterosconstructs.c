@@ -45,6 +45,11 @@ int main(){
 	inicializar(&listado[0],nombre,edad,nota);
 	}
 
+	printf("Edad antigua de %s: %d\n",listado[0].nombre,listado.edad);
+	cumpleanios(&listado[0]);
+	printf("Edad nueva: %d\n",listado[0].edad);	
+
+
 	return EXIT_SUCCESS;
 
 

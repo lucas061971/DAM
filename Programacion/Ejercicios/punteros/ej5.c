@@ -7,7 +7,7 @@ int n2 = 5;
 int n3 = 1;
 
 void intercambiar1(int *n){
-	printf("Valor intercambiado:%d\n", *n1);
+	printf("Valor intercambio:%d\n", *n1);
 	printf("Valor intercambiado en la función:%d\n", *n2);
 
 }
