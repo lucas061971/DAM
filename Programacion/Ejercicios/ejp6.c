@@ -1,10 +1,46 @@
 #include<stdio.h>
 #include<stdlib.h> 
+#include<string.h>
 
+#define MAX_CHARTITULO 80
+#define MAX_CHARAUTOR 45
+#define MAX_LIBRO 40
 
+typedef enum{
+        FICTION,
+        NON_FICTION,
+        THEATER,
+        POETRY,
+        ESSAY
+} genero_literario;
 
+typedef struct{
+        int id;
+        char nombre[MAX_CHARTITULO];
+        char autor[MAX_CHARAUTOR];
+        double precio;
+        genero_literario categoria;
 
-ook books[40] = {
+        int stock;
+}Book;
+
+void imprimirLibro(Book libro){
+
+        
+        printf("ID: %d\n",libro.id);
+        printf("Nombre: %s\n",libro.nombre);
+        printf("Autor: %s\n",libro.autor);
+        printf("Precio: %.2f\n",libro.precio);
+        printf("Categoria: %d\n",libro.categoria);
+        printf("Stock: %i\n",libro.stock);
+
+}
+
+int main(){
+        // tipo_de_dato nombre_de_la_variable = valor_de_la_variable;
+        // Darle un valor a la varaible es opcional.
+
+        Book books[MAX_LIBRO] = {
         {1, "To Kill a Mockingbird", "Harper Lee", 15.99, FICTION, 10},
         {2, "1984", "George Orwell", 12.49, FICTION, 5},
         {3, "The Great Gatsby", "F. Scott Fitzgerald", 10.99, FICTION, 8},
@@ -45,4 +81,17 @@ ook books[40] = {
         {38, "The Communist Manifesto", "Karl Marx and Friedrich Engels", 5.99, ESSAY, 12},
         {39, "The Republic", "Plato", 16.00, ESSAY, 6},
         {40, "Thus Spoke Zarathustra", "Friedrich Nietzsche", 14.99, ESSAY, 10}
-    }; 
+            }; 
+
+        // Mostrar todos los libros:
+        for (int i = 0; i < 40 ; i++){
+                imprimirLibro(books[i]);
+        }
+
+       
+
+
+
+
+
+}
