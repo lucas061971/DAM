@@ -14,15 +14,15 @@ typedef enum{
         ESSAY
 } genero_literario;
 
-typedef struct{
+typedef struct {
         int id;
         char nombre[MAX_CHARTITULO];
         char autor[MAX_CHARAUTOR];
-        double precio;
+        float precio;
         genero_literario categoria;
-
         int stock;
 }Book;
+
 
 void imprimirLibro(Book libro){
 
@@ -36,10 +36,24 @@ void imprimirLibro(Book libro){
 
 }
 
+void mostrarTodosLosLibros(Book * books){
+for (int i = 0 ; i < 40 ; i++){
+     imprimirLibro(books[i]);
+}
+}
+
+void buscar_e_imprimir_libro(Book * books,int id_a_buscar){
+
+        for ( i = 0; i < 40 ;i++){
+
+        }
+
+}
+
+
 int main(){
         // tipo_de_dato nombre_de_la_variable = valor_de_la_variable;
         // Darle un valor a la varaible es opcional.
-
         Book books[MAX_LIBRO] = {
         {1, "To Kill a Mockingbird", "Harper Lee", 15.99, FICTION, 10},
         {2, "1984", "George Orwell", 12.49, FICTION, 5},
@@ -79,19 +93,15 @@ int main(){
         {36, "Meditations", "Marcus Aurelius", 11.99, ESSAY, 8},
         {37, "The Federalist Papers", "Alexander Hamilton, James Madison, John Jay", 18.00, ESSAY, 5},
         {38, "The Communist Manifesto", "Karl Marx and Friedrich Engels", 5.99, ESSAY, 12},
-        {39, "The Republic", "Plato", 16.00, ESSAY, 6},
+        {39, "The Republic", "Plato", 16.00, ESSAY, 6}, 
         {40, "Thus Spoke Zarathustra", "Friedrich Nietzsche", 14.99, ESSAY, 10}
             }; 
+        
+        
 
         // Mostrar todos los libros:
-        for (int i = 0; i < 40 ; i++){
-                imprimirLibro(books[i]);
-        }
-
-       
-
-
-
+       mostrarTodosLosLibros(books);
+       return 0;
 
 
 }
