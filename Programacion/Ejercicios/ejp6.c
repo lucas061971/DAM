@@ -113,68 +113,75 @@ int main(int argc, char *argv[]){
         }; 
 
         if(argc == 2){
-                if(strcmp(argv[1],"todo") == 0){
-                        printf("caso todo\n");
-                }else if(strcmp(argv[1],"mostrar") == 0){
-                        printf("caso mostrar\n");
+                if(strcmp(argv[1],"todo") == 0){                //Esta función facilita que yo cuando compile ponga "todo" y me muestre el menú directamente
+                        int numero;
+
+                        printf("Que quieres hacer?\n 1.Mostrar todos los libros\n 2.Mostrar un libro por id\n 3.Mostrar un libro por stock\n 4.Mostrar un libro por categoría\n 5.Salir\n");    //Esto es el menú que te muestra al principio para que elijas lo que quieres que te muestre.
+                        scanf("%d",&numero);
+                        if (numero == 1) {
+                                mostrarTodosLosLibros(books);
+                        }
+                        else if (numero == 2){
+                                int id;
+                        printf("Introduce el número del libro que quieres ver (1-40): ");               //Este es el texto que te muestra antes de poner el número del libro que quieres q te muestre.
+                        scanf("%d", &id);
+                        mostrarUnLibroPorId(books, id);
+                        }
+                        else if (numero == 3){
+                                int id;
+                                int stock;
+
+                                printf("Introduce el id que quieres: ");                //Este es el texto que te muestra antes de poner el id que quieres q te muestre.
+                                scanf("%d", &id);
+                                printf("Introduce el aumento de stock que quieres: ");          //Este es el texto que te muestra antes de poner el aumento de stock que quieres q te aumento.
+                                scanf("%d", &stock);
+                                aumentarStock(books,id, stock);
+
+                        }
+                        else if (numero == 4){
+                                int categoria;
+
+                                printf("Introduce que categoria quieres: ");            //Este es el texto que te muestra antes de poner la categoria que quieres q te muestre.
+                                scanf("%d", &categoria);
+                                mostrarUnLibroPorIdCategoria(books, categoria);
+                        }
+
+                }else if(strcmp(argv[1],"mostrar") == 0){               //Esta función facilita que yo cuando compile ponga "mostrar", me muestre todos los libros, 
+                        int numero;
+                        // Mostrar todos los libros
+                        mostrarTodosLosLibros(books);
+
                 }else if(strcmp(argv[1],"añadir") == 0){
                         printf("caso añadir\n");
+                        // TODO: por completar
                 }else{
                         printf("Error. Instrucción no reconocida\n");
                 }
         }
         else if(argc == 3){
-                if(strcmp(argv[1],"mostrar") == 0){
-                        printf("caso mostrar 15\n");
-                }else if(strcmp(argv[1],"categoria") == 0){
-                        printf("caso categoria 2\n");
+                if(strcmp(argv[1],"mostrar") == 0){             //Esta funcion sirve para que yo después de mostrar ponga un número y me muestre solo el libro del número que he indicado
+                        // Mostrar libro por id
+                        mostrarUnLibroPorId(books, atoi(argv[2]));
+                }else if(strcmp(argv[1],"categoria") == 0){             //Esta función sirve para que cuando yo ponga "categoria" me muestre los libros con esa categoria
+                        // Mostrar por categoria
+                        mostrarUnLibroPorIdCategoria(books, atoi(argv[2]));             
                 }
                 else if(strcmp(argv[1],"autor") == 0){
-                        printf("caso autor \"George Orwell\"\n");
+                        // TODO: por completar
                 }else{
                         printf("Error. Instrucción no reconocida\n");
                 }
         }
         else if(argc == 4){
-                if(strcmp(argv[1],"stock") == 0){
-                        printf("caso stock 15 3\n");
+                if(strcmp(argv[1],"stock") == 0){                       //Esto me sirve para que al libro que yo le ponga le sume al stock el número que quiero que se sume
+                        aumentarStock(books,atoi(argv[2]), atoi(argv[3]));
                 }else{
                         printf("Error. Instrucción no reconocida\n");
                 }
         } else{
                 printf("Error\n");
         }
-        int numero;
-
-        printf("Que quieres hacer?\n 1.Mostrar todos los libros\n 2.Mostrar un libro por id\n 3.Mostrar un libro por stock\n 4.Mostrar un libro por categoría\n 5.Salir\n");    //Esto es el menú que te muestra al principio para que elijas lo que quieres que te muestre.
-        scanf("%d",&numero);
-        if (numero == 1) {
-                mostrarTodosLosLibros(books);
-        }
-        else if (numero == 2){
-                int id;
-        printf("Introduce el número del libro que quieres ver (1-40): ");               //Este es el texto que te muestra antes de poner el número del libro que quieres q te muestre.
-        scanf("%d", &id);
-        mostrarUnLibroPorId(books, id);
-}
-else if (numero == 3){
-        int id;
-        int stock;
-
-        printf("Introduce el id que quieres: ");                //Este es el texto que te muestra antes de poner el id que quieres q te muestre.
-        scanf("%d", &id);
-        printf("Introduce el aumento de stock que quieres: ");          //Este es el texto que te muestra antes de poner el aumento de stock que quieres q te aumento.
-        scanf("%d", &stock);
-        aumentarStock(books,id, stock);
-
-}
-else if (numero == 4){
-        int categoria;
-
-        printf("Introduce que categoria quieres: ");            //Este es el texto que te muestra antes de poner la categoria que quieres q te muestre.
-        scanf("%d", &categoria);
-        mostrarUnLibroPorIdCategoria(books, categoria);
-}
+        
 
 return 0;
 }
