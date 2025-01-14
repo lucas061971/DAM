@@ -4,7 +4,8 @@
 
 #define MAX_CHARTITULO 80
 #define MAX_CHARAUTOR 45
-#define MAX_LIBRO 40
+
+int MAX_LIBRO = 40; // Variable GLOBAL
 
 typedef enum{
         FICTION, // 0
@@ -66,51 +67,111 @@ void mostrarUnLibroPorIdCategoria(Book * books, genero_literario categoria_a_bus
 }
 }
 
+
+
+void añadirLibro(){
+        int id;  
+        char nombre[MAX_CHARTITULO];
+        char autor[MAX_CHARAUTOR];
+        float precio;
+        int genero_literario;
+        int stock;
+
+        libro libro_nuevo;
+
+        printf("Introduce el nombre del libro:");
+        scanf(" %[^\n]", nombre);
+
+        printf("Introduce el autor del libro:");
+        scanf(" %[^\n]", &libro_nuevo.nombre);
+
+        printf("Introduce el precio del libro:");
+        scanf(" %f", &libro_nuevo.autor);
+
+        printf("Introduce el genero del libro:");
+        scanf(" %d", &libro_nuevo.precio);
+
+        printf("Introduce la cantidad disponible del libro:");
+        scanf(" %d", &libro_nuevo.genero_literario);
+
+        int nuevoId = (41);
+
+                
+        Libro * nuevoArreglo = realloc(libros, (libro_nuevo + 1) * sizeof(libro));
+        if(nuevoArreglo == NULL) {
+                printf("Error al asignar memoria para el nuevo libro.\n");
+                return;
+        }
+        libros = nuevoArreglo;
+
+        libros[numLibros].id = nuevoId;
+        strncpy(libros[numLibros].nombre, nombre, MAX);
+        strncpy(libros[numLibros].autor, autor, MAX_CHARAUTOR);
+        libros[numLibros].precio = precio;
+        libros[numLibros].genero = genero_literario categoria;
+        libros[numLibros].cantidad = cantidad;
+                // 3. Incrementar MAX_LIBRO
+                MAX_LIBRO++;
+        printf("Libro añadido exitosamente con ID %d.\n", nuevoId);
+}
+
+void inicializarLibro(Book * direccion_donde_guardar){
+        int id;  
+        char nombre[MAX_CHARTITULO];
+        char autor[MAX_CHARAUTOR];
+        float precio;
+        int genero_literario;
+        int stock;
+                
+
+}
+
 int main(int argc, char *argv[]){
         // tipo_de_dato nombre_de_la_variable = valor_de_la_variable;
         // Darle un valor a la variable es opcional.
-        Book books[MAX_LIBRO] = {
-                {1, "To Kill a Mockingbird", "Harper Lee", 15.99, FICTION, 10},
-                {2, "1984", "George Orwell", 12.49, FICTION, 5},
-                {3, "The Great Gatsby", "F. Scott Fitzgerald", 10.99, FICTION, 8},
-                {4, "Moby Dick", "Herman Melville", 18.99, FICTION, 12},
-                {5, "War and Peace", "Leo Tolstoy", 20.00, FICTION, 7},
-                {6, "Pride and Prejudice", "Jane Austen", 14.99, FICTION, 9},
-                {7, "The Catcher in the Rye", "J.D. Salinger", 10.00, FICTION, 6},
-                {8, "The Odyssey", "Homer", 17.49, FICTION, 4},
-                {9, "Ulysses", "James Joyce", 25.00, FICTION, 2},
-                {10, "The Divine Comedy", "Dante Alighieri", 22.00, POETRY, 3},
-                {11, "Leaves of Grass", "Walt Whitman", 13.00, POETRY, 11},
-                {12, "The Iliad", "Homer", 18.50, FICTION, 7},
-                {13, "A Brief History of Time", "Stephen Hawking", 15.00, NON_FICTION, 15},
-                {14, "The Art of War", "Sun Tzu", 9.99, NON_FICTION, 20},
-                {15, "Sapiens: A Brief History of Humankind", "Yuval Noah Harari", 16.49, NON_FICTION, 13},
-                {16, "The Selfish Gene", "Richard Dawkins", 14.00, NON_FICTION, 6},
-                {17, "The Road to Serfdom", "F.A. Hayek", 10.50, NON_FICTION, 5},
-                {18, "The Wealth of Nations", "Adam Smith", 30.00, NON_FICTION, 8},
-                {19, "On the Origin of Species", "Charles Darwin", 24.99, NON_FICTION, 4},
-                {20, "The Prince", "Niccolò Machiavelli", 8.99, NON_FICTION, 14},
-                {21, "Hamlet", "William Shakespeare", 11.50, THEATER, 6},
-                {22, "Macbeth", "William Shakespeare", 9.50, THEATER, 8},
-                {23, "Othello", "William Shakespeare", 10.99, THEATER, 7},
-                {24, "A Doll's House", "Henrik Ibsen", 12.50, THEATER, 5},
-                {25, "Waiting for Godot", "Samuel Beckett", 13.99, THEATER, 4},
-                {26, "Death of a Salesman", "Arthur Miller", 14.99, THEATER, 10},
-                {27, "The Glass Menagerie", "Tennessee Williams", 11.00, THEATER, 9},
-                {28, "Long Day's Journey into Night", "Eugene O'Neill", 19.50, THEATER, 3},
-                {29, "The Importance of Being Earnest", "Oscar Wilde", 8.50, THEATER, 15},
-                {30, "The Waste Land", "T.S. Eliot", 6.99, POETRY, 10},
-                {31, "Paradise Lost", "John Milton", 12.00, POETRY, 7},
-                {32, "Beowulf", "Anonymous", 15.00, POETRY, 5},
-                {33, "Essays", "Michel de Montaigne", 20.00, ESSAY, 4},
-                {34, "Self-Reliance and Other Essays", "Ralph Waldo Emerson", 9.00, ESSAY, 9},
-                {35, "Civil Disobedience and Other Essays", "Henry David Thoreau", 7.50, ESSAY, 11},
-                {36, "Meditations", "Marcus Aurelius", 11.99, ESSAY, 8},
-                {37, "The Federalist Papers", "Alexander Hamilton, James Madison, John Jay", 18.00, ESSAY, 5},
-                {38, "The Communist Manifesto", "Karl Marx and Friedrich Engels", 5.99, ESSAY, 12},
-                {39, "The Republic", "Plato", 16.00, ESSAY, 6}, 
-                {40, "Thus Spoke Zarathustra", "Friedrich Nietzsche", 14.99, ESSAY, 10}
-        }; 
+
+        Book* books = () malloc(MAX_LIBRO * sizeof(Book)); // ALGO ASÍ
+
+        books = inicializarLibro(books, 1, "To Kill a Mockingbird", "Harper Lee", 15.99, FICTION, 10);
+        books = inicializarLibro(books, 2, "1984", "George Orwell", 12.49, FICTION, 5);
+        books = inicializarLibro(books, 3, "The Great Gatsby", "F. Scott Fitzgerald", 10.99, FICTION, 8);
+        books = inicializarLibro(books, 4, "Moby Dick", "Herman Melville", 18.99, FICTION, 12);
+        books = inicializarLibro(books, 5, "War and Peace", "Leo Tolstoy", 20.00, FICTION, 7);
+        books = inicializarLibro(books, 6, "Pride and Prejudice", "Jane Austen", 14.99, FICTION, 9);
+        books = inicializarLibro(books, 7, "The Catcher in the Rye", "J.D. Salinger", 10.00, FICTION, 6);
+        books = inicializarLibro(books, 8, "The Odyssey", "Homer", 17.49, FICTION, 4);
+        books = inicializarLibro(books, 9, "Ulysses", "James Joyce", 25.00, FICTION, 2);
+        books = inicializarLibro(books, 10, "The Divine Comedy", "Dante Alighieri", 22.00, POETRY, 3);
+        books = inicializarLibro(books, 11, "Leaves of Grass", "Walt Whitman", 13.00, POETRY, 11);
+        books = inicializarLibro(books, 12, "The Iliad", "Homer", 18.50, FICTION, 7);
+        books = inicializarLibro(books, 13, "A Brief History of Time", "Stephen Hawking", 15.00, NON_FICTION, 15);
+        books = inicializarLibro(books, 14, "The Art of War", "Sun Tzu", 9.99, NON_FICTION, 20);
+        books = inicializarLibro(books, 15, "Sapiens: A Brief History of Humankind", "Yuval Noah Harari", 16.49, NON_FICTION, 13);
+        books = inicializarLibro(books, 16, "The Selfish Gene", "Richard Dawkins", 14.00, NON_FICTION, 6);
+        books = inicializarLibro(books, 17, "The Road to Serfdom", "F.A. Hayek", 10.50, NON_FICTION, 5);
+        books = inicializarLibro(books, 18, "The Wealth of Nations", "Adam Smith", 30.00, NON_FICTION, 8);
+        books = inicializarLibro(books, 19, "On the Origin of Species", "Charles Darwin", 24.99, NON_FICTION, 4);
+        books = inicializarLibro(books, 20, "The Prince", "Niccolò Machiavelli", 8.99, NON_FICTION, 14);
+        books = inicializarLibro(books, 21, "Hamlet", "William Shakespeare", 11.50, THEATER, 6);
+        books = inicializarLibro(books, 22, "Macbeth", "William Shakespeare", 9.50, THEATER, 8);
+        books = inicializarLibro(books, 23, "Othello", "William Shakespeare", 10.99, THEATER, 7);
+        books = inicializarLibro(books, 24, "A Doll's House", "Henrik Ibsen", 12.50, THEATER, 5);
+        books = inicializarLibro(books, 25, "Waiting for Godot", "Samuel Beckett", 13.99, THEATER, 4);
+        books = inicializarLibro(books, 26, "Death of a Salesman", "Arthur Miller", 14.99, THEATER, 10);
+        books = inicializarLibro(books, 27, "The Glass Menagerie", "Tennessee Williams", 11.00, THEATER, 9);
+        books = inicializarLibro(books, 28, "Long Day's Journey into Night", "Eugene O'Neill", 19.50, THEATER, 3);
+        books = inicializarLibro(books, 29, "The Importance of Being Earnest", "Oscar Wilde", 8.50, THEATER, 15);
+        books = inicializarLibro(books, 30, "The Waste Land", "T.S. Eliot", 6.99, POETRY, 10);
+        books = inicializarLibro(books, 31, "Paradise Lost", "John Milton", 12.00, POETRY, 7);
+        books = inicializarLibro(books, 32, "Beowulf", "Anonymous", 15.00, POETRY, 5);
+        books = inicializarLibro(books, 33, "Essays", "Michel de Montaigne", 20.00, ESSAY, 4);
+        books = inicializarLibro(books, 34, "Self-Reliance and Other Essays", "Ralph Waldo Emerson", 9.00, ESSAY, 9);
+        books = inicializarLibro(books, 35, "Civil Disobedience and Other Essays", "Henry David Thoreau", 7.50, ESSAY, 11);
+        books = inicializarLibro(books, 36, "Meditations", "Marcus Aurelius", 11.99, ESSAY, 8);
+        books = inicializarLibro(books, 37, "The Federalist Papers", "Alexander Hamilton, James Madison, John Jay", 18.00, ESSAY, 5);
+        books = inicializarLibro(books, 38, "The Communist Manifesto", "Karl Marx and Friedrich Engels", 5.99, ESSAY, 12);
+        books = inicializarLibro(books, 39, "The Republic", "Plato", 16.00, ESSAY, 6); 
+        books = inicializarLibro(books, 40, "Thus Spoke Zarathustra", "Friedrich Nietzsche", 14.99, ESSAY, 10);
 
         if(argc == 2){
                 if(strcmp(argv[1],"todo") == 0){                //Esta función facilita que yo cuando compile ponga "todo" y me muestre el menú directamente
@@ -119,13 +180,13 @@ int main(int argc, char *argv[]){
                         printf("Que quieres hacer?\n 1.Mostrar todos los libros\n 2.Mostrar un libro por id\n 3.Mostrar un libro por stock\n 4.Mostrar un libro por categoría\n 5.Salir\n");    //Esto es el menú que te muestra al principio para que elijas lo que quieres que te muestre.
                         scanf("%d",&numero);
                         if (numero == 1) {
-                                mostrarTodosLosLibros(books);
+                                mostrarTodosLosLibros(Book);
                         }
                         else if (numero == 2){
                                 int id;
                         printf("Introduce el número del libro que quieres ver (1-40): ");               //Este es el texto que te muestra antes de poner el número del libro que quieres q te muestre.
                         scanf("%d", &id);
-                        mostrarUnLibroPorId(books, id);
+                        mostrarUnLibroPorId(Book, id);
                         }
                         else if (numero == 3){
                                 int id;
@@ -135,7 +196,7 @@ int main(int argc, char *argv[]){
                                 scanf("%d", &id);
                                 printf("Introduce el aumento de stock que quieres: ");          //Este es el texto que te muestra antes de poner el aumento de stock que quieres q te aumento.
                                 scanf("%d", &stock);
-                                aumentarStock(books,id, stock);
+                                aumentarStock(Book,id, stock);
 
                         }
                         else if (numero == 4){
@@ -143,17 +204,17 @@ int main(int argc, char *argv[]){
 
                                 printf("Introduce que categoria quieres: ");            //Este es el texto que te muestra antes de poner la categoria que quieres q te muestre.
                                 scanf("%d", &categoria);
-                                mostrarUnLibroPorIdCategoria(books, categoria);
+                                mostrarUnLibroPorIdCategoria(Book, categoria);
                         }
 
                 }else if(strcmp(argv[1],"mostrar") == 0){               //Esta función facilita que yo cuando compile ponga "mostrar", me muestre todos los libros, 
                         int numero;
                         // Mostrar todos los libros
-                        mostrarTodosLosLibros(books);
+                        mostrarTodosLosLibros(Book);
 
                 }else if(strcmp(argv[1],"añadir") == 0){
-                        printf("caso añadir\n");
-                        // TODO: por completar
+                        añadirLibro ();
+
                 }else{
                         printf("Error. Instrucción no reconocida\n");
                 }
@@ -161,10 +222,10 @@ int main(int argc, char *argv[]){
         else if(argc == 3){
                 if(strcmp(argv[1],"mostrar") == 0){             //Esta funcion sirve para que yo después de mostrar ponga un número y me muestre solo el libro del número que he indicado
                         // Mostrar libro por id
-                        mostrarUnLibroPorId(books, atoi(argv[2]));
+                        mostrarUnLibroPorId(Book, atoi(argv[2]));
                 }else if(strcmp(argv[1],"categoria") == 0){             //Esta función sirve para que cuando yo ponga "categoria" me muestre los libros con esa categoria
                         // Mostrar por categoria
-                        mostrarUnLibroPorIdCategoria(books, atoi(argv[2]));             
+                        mostrarUnLibroPorIdCategoria(Book, atoi(argv[2]));             
                 }
                 else if(strcmp(argv[1],"autor") == 0){
                         // TODO: por completar
@@ -174,7 +235,7 @@ int main(int argc, char *argv[]){
         }
         else if(argc == 4){
                 if(strcmp(argv[1],"stock") == 0){                       //Esto me sirve para que al libro que yo le ponga le sume al stock el número que quiero que se sume
-                        aumentarStock(books,atoi(argv[2]), atoi(argv[3]));
+                        aumentarStock(Book,atoi(argv[2]), atoi(argv[3]));
                 }else{
                         printf("Error. Instrucción no reconocida\n");
                 }
@@ -182,6 +243,6 @@ int main(int argc, char *argv[]){
                 printf("Error\n");
         }
         
-
+free (Book);
 return 0;
 }
