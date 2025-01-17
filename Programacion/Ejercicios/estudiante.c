@@ -1,10 +1,10 @@
-#include<stdio.h>
+#include<stdio.h0>
 #include<stdlib.h>
 
 
 
-define MAX_NOMBRE 20                                                                                   
-#define MAX_ESTUDIANTES 20                                                                              
+#define MAX_NOMBRE 20;                                                                                 
+#define MAX_ESTUDIANTES 20;                                                                              
 typedef struct  {                                                                                       
         char nombre[MAX_NOMBRE];                                                                        
         int edad;                                                                                       
@@ -38,8 +38,9 @@ int main(){
         scanf("%d", &num_estudiantes);                                                                  
         printf("Introduce la edad:");                                                                   
         scanf("%d", &edad);                                                                             
-        printf("Introduce la nota:");                                                                   
-        scanf("%f", &nota);                                                                             
+        printf("Introduce la nota:");    
+        scanf("%f", &nota);                                                                                                                                                
+
         printf("Introduce la nombre:");                                                                 
         scanf("%s", nombre);                                                                            
                                                                                                         
@@ -48,6 +49,12 @@ int main(){
                                                                                                         
         printf("Edad antigua de %s: %d\n",listado[0].nombre,listado.edad);                              
                 cumpleanios(&listado[0]);
+
+        char StringARellenar[MAX_BUFFER];
+        estudianteToString(&listado[0],StringARellenar)
+        printf("Introduce el numero de estudiantes:%d");
+        scanf("%d",&num_estudiantes);
+        printf("Cuantos estudiantes deseas inicializar");
 
                 return 0;
         }

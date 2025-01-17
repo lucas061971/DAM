@@ -4,6 +4,7 @@
 
 
 int main(){
+	
 	int *arr;
 	int num;
 	printf("Indica el tamaño del array:\n");

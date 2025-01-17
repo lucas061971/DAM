@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_CHARTITULO 80
-#define MAX_CHARAUTOR 45
-#define MAX_LIBRO 40
+#define MAX_CHARTITULO 80           //Aqui indico el máximo número de caracteres que quiero para mi título
+#define MAX_CHARAUTOR 45            //Aqui indico el máximo número de caracteres que quiero para mi título
+#define MAX_LIBRO 40                //Aqui indico el máximo número de caracteres que quiero para mi título
 
 typedef enum {
     FICTION,        // 0
@@ -15,83 +15,27 @@ typedef enum {
 } genero_literario;
 
 typedef struct {
-    int id;
-    char nombre[MAX_CHARTITULO];
-    char autor[MAX_CHARAUTOR];
-    float precio;
-    genero_literario categoria;
-    int stock;
+    int id;         // ID del libro
+    char nombre[MAX_CHARTITULO];        // Nombre del libro
+    char autor[MAX_CHARAUTOR];          // Autor del libro
+    float precio;           // Precio del libro
+    genero_literario categoria;         // Género del libro
+    int stock;          // Cantidad disponible en stock
 } Book;
 
-void imprimirLibro(Book libro) {
-    const char *categorias[] = {"Fiction", "Non-Fiction", "Theater", "Poetry", "Essay"};
-    printf("ID: %d\n", libro.id);
-    printf("Nombre: %s\n", libro.nombre);
-    printf("Autor: %s\n", libro.autor);
-    printf("Precio: %.2f\n", libro.precio);
-    printf("Categoria: %s\n", categorias[libro.categoria]);
-    printf("Stock: %d\n", libro.stock);
-}
+void imprimirLibro(Book libro);                                 //Abajo del todo está el desarrollo
 
-void mostrarTodosLosLibros(Book *books, int totalLibros) {
-    for (int i = 0; i < totalLibros; i++) {
-        imprimirLibro(books[i]);
-        printf("------------------\n");
-    }
-}
+void mostrarTodosLosLibros(Book *books, int totalLibros);
 
-void mostrarUnLibroPorId(Book *books, int totalLibros, int id) {
-    if (id > 0 && id <= totalLibros) {
-        imprimirLibro(books[id - 1]);
-    } else {
-        printf("ID invalido.\n");
-    }
-}
+void mostrarUnLibroPorId(Book *books, int totalLibros, int id);
 
-void mostrarLibrosPorAutor(Book *books, int totalLibros, const char *autor) {
-    for (int i = 0; i < totalLibros; i++) {
-        if (strcmp(books[i].autor, autor) == 0) {
-            imprimirLibro(books[i]);
-            printf("------------------\n");
-        }
-    }
-}
+void mostrarLibrosPorAutor(Book *books, int totalLibros, const char *autor);
 
-void mostrarLibrosPorCategoria(Book *books, int totalLibros, genero_literario categoria) {
-    for (int i = 0; i < totalLibros; i++) {
-        if (books[i].categoria == categoria) {
-            imprimirLibro(books[i]);
-            printf("------------------\n");
-        }
-    }
-}
+void mostrarLibrosPorCategoria(Book *books, int totalLibros, genero_literario categoria);
 
-void inicializarLibro(Book *libro, int id, const char *nombre, const char *autor, float precio, genero_literario categoria, int stock) {
-    libro->id = id;
-    strncpy(libro->nombre, nombre, MAX_CHARTITULO);
-    strncpy(libro->autor, autor, MAX_CHARAUTOR);
-    libro->precio = precio;
-    libro->categoria = categoria;
-    libro->stock = stock;
-}
+void inicializarLibro(Book *libro, int id, const char *nombre, const char *autor, float precio, genero_literario categoria, int stock);
 
-Book *añadirLibro(Book *books, int *totalLibros, int *capacidad, const char *nombre, const char *autor, float precio, genero_literario categoria, int stock) {
-    if (*totalLibros >= *capacidad) {
-        *capacidad *= 2;
-        books = realloc(books, (*capacidad) * sizeof(Book));
-        if (!books) {
-            printf("Error al redimensionar la memoria.\n");
-            exit(1);
-        }
-    }
-
-    inicializarLibro(&books[*totalLibros], *totalLibros + 1, nombre, autor, precio, categoria, stock);
-    (*totalLibros)++;
-    printf("Libro añadido correctamente:\n");
-    imprimirLibro(books[*totalLibros - 1]);
-
-    return books;
-}
+Book *añadirLibro(Book *books, int *totalLibros, int *capacidad, const char *nombre, const char *autor, float precio, genero_literario categoria, int stock);
 
 int main(int argc, char *argv[]) {
     int capacidad = MAX_LIBRO;
@@ -144,7 +88,7 @@ int main(int argc, char *argv[]) {
         books = añadirLibro(books, &totalLibros, &capacidad, "Thus Spoke Zarathustra", "Friedrich Nietzsche", 14.99, ESSAY, 10);
 
 
-    if (argc < 2) {
+    if (argc < 2) {                 //Esto sirve para que cuando indiques un número te indique una cosa u otra
         printf("Uso: %s [comando] [argumentos]\n", argv[0]);
         printf("Comandos disponibles:\n");
         printf("  mostrar: Muestra todos los libros\n");
@@ -152,7 +96,8 @@ int main(int argc, char *argv[]) {
         printf("  categoria [categoria]: Muestra los libros de la categoria especificada\n");
         printf("  autor [nombre]: Muestra los libros del autor especificado\n");
         printf("  añadir [nombre] [autor] [precio] [categoria] [stock]: Añade un nuevo libro\n");
-        return 1;
+        free(books);
+        return 0;
     }
 
     if (strcmp(argv[1], "mostrar") == 0) {
@@ -173,7 +118,7 @@ int main(int argc, char *argv[]) {
         if (categoria >= 0 && categoria <= 4) {
             mostrarLibrosPorCategoria(books, totalLibros, (genero_literario)categoria);
         } else {
-            printf("Categoria invalida.\n");
+            printf("Categoria no válida.\n");
         }
     } else if (strcmp(argv[1], "autor") == 0) {
         if (argc < 3) {
@@ -195,12 +140,71 @@ int main(int argc, char *argv[]) {
         if (categoria >= 0 && categoria <= 4) {
             books = añadirLibro(books, &totalLibros, &capacidad, nombre, autor, precio, (genero_literario)categoria, stock);
         } else {
-            printf("Categoria invalida. No se pudo añadir el libro.\n");
+            printf("Categoria invalida. No se puede añadir el libro.\n");
         }
     } else {
         printf("Comando desconocido: %s\n", argv[1]);
-    }
+        }
 
-    free(books);
-    return 0;
+        free(books);
+        return 0;
+    }
+    void imprimirLibro(Book libro) {
+    const char *categorias[] = {"Fiction", "Non-Fiction", "Theater", "Poetry", "Essay"};             //Esto sirve para imprimir la información de un libro
+    printf("ID: %d\n", libro.id);
+    printf("Nombre: %s\n", libro.nombre);
+    printf("Autor: %s\n", libro.autor);
+    printf("Precio: %.2f\n", libro.precio);
+    printf("Categoria: %s\n", categorias[libro.categoria]);
+    printf("Stock: %d\n", libro.stock);
+}
+ void mostrarTodosLosLibros(Book *books, int totalLibros) {              //Muestra todos los libros de la lista
+    for (int i = 0; i < totalLibros; i++) {
+        imprimirLibro(books[i]);
+    }
+}
+void mostrarUnLibroPorId(Book *books, int totalLibros, int id) {            //Muestra un libro según el ID que le he indicado
+    if (id > 0 && id <= totalLibros) {
+        imprimirLibro(books[id - 1]);
+    } else {
+        printf("ID invalido.\n");
+    }
+}
+void mostrarLibrosPorAutor(Book *books, int totalLibros, const char *autor) {           //Muestra todos libros de ese autor
+    for (int i = 0; i < totalLibros; i++) {
+        if (strcmp(books[i].autor, autor) == 0) {
+            imprimirLibro(books[i]);
+            
+        }
+    }
+}
+void mostrarLibrosPorCategoria(Book *books, int totalLibros, genero_literario categoria) {
+    for (int i = 0; i < totalLibros; i++) {
+        if (books[i].categoria == categoria) {
+            imprimirLibro(books[i]);          
+        }
+    }
+}
+void inicializarLibro(Book *libro, int id, const char *nombre, const char *autor, float precio, genero_literario categoria, int stock) {
+    libro->id = id;
+    strncpy(libro->nombre, nombre, MAX_CHARTITULO);         //Nombre del libro, limitando el máximo de caracteres del título
+    strncpy(libro->autor, autor, MAX_CHARAUTOR);            //Nombre del libro, limitando el máximo de caracteres del autor
+    libro->precio = precio;
+    libro->categoria = categoria;
+    libro->stock = stock;
+}
+Book *añadirLibro(Book *books, int *totalLibros, int *capacidad, const char *nombre, const char *autor, float precio, genero_literario categoria, int stock) {
+    if (*totalLibros >= *capacidad) {
+        *capacidad *= 2;
+        books = realloc(books, (*capacidad) * sizeof(Book));
+
+        if (!books) {
+            printf("Error al redimensionar la memoria.\n");
+            exit(1);
+        }
+    }
+    inicializarLibro(&books[*totalLibros], *totalLibros + 1, nombre, autor, precio, categoria, stock);
+    (*totalLibros)++;
+    
+     return books;
 }

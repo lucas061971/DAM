@@ -20,6 +20,4 @@ int main(){
 	printf("Has elegido 4\n");
 	}else if(eleccion =5){
 	printf("Has elegido 5\n");
-		
-}
 }
