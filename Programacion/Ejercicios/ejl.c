@@ -1,23 +1,26 @@
 #include<stdio.h>
-#include<stdlib.h>
-
-
+#include<stdlib.h> 
+#include<string.h>
 
 int main(){
-	
-	do{
-	int eleccion;
-	printf("Que quieres hacer?:\n \t 1)ver catalogo.\n \t 2)Buscar liro por ID. \n \t 3)Modificar struct.\n \t 4)Buscar libro por categoría.\n \t 5)Buscar libro por autor.\n \t 6)Salir.\n");
-	scanf("%d",&eleccion);
-	}while(eleccion !=1 && eleccion!=2 && eleccion !=3 && eleccion!=4 && eleccion !=5 && eleccion!=6);
-	if(eleccion = 1){
-	printf("Has elegido 1\n");
-	}else if(eleccion =2){
-	printf("Has elegido 2\n");
-	}else if(eleccion =3){
-	printf("Has elegido 3\n");
-	}else if(eleccion =4);
-	printf("Has elegido 4\n");
-	}else if(eleccion =5){
-	printf("Has elegido 5\n");
+
+        int array[10] = {-5,1,9,10,11,12,17,120,150,1500};
+        int a_buscar=120;
+        int encontrado=busqueda_binaria(array,a_buscar,0,9);
+
+        return 0;
+}
+
+        int busqueda_binaria(int*array,int a_buscar,int ini, int fin){
+
+        int mitad =(ini + fin)/2;
+        if (array [mitad]== a_buscar){
+
+        return 1;
+
+        }else if(array < a_buscar){
+        ini = mitad + 1;
+        }else{
+        ini = mitad - 1;
+        }
 }
